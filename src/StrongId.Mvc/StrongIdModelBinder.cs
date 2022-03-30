@@ -1,4 +1,4 @@
-// Mileage Tracker
+// StrongId: Strongly-Typed ID Values
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
 using System.Threading.Tasks;
@@ -7,12 +7,19 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace StrongId.Mvc;
 
 /// <summary>
-/// Binds an ID to a StrongID
+/// <see cref="IStrongId"/> MVC model binder
 /// </summary>
-/// <typeparam name="T">StrongID type</typeparam>
-public sealed class StrongIdModelBinder<T> : IModelBinder
-	where T : IStrongId, new()
+/// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
+/// <typeparam name="TIdValue"><see cref="IStrongId"/> Value type</typeparam>
+public abstract class StrongIdModelBinder<TId, TIdValue> : IModelBinder
+	where TId : class, IStrongId<TIdValue>, new()
 {
+	/// <summary>
+	/// StrongId Value parse function
+	/// </summary>
+	/// <param name="input">Input string from the model binder</param>
+	internal abstract Maybe<TIdValue> Parse(string input);
+
 	/// <summary>
 	/// Get value and attempt to parse as a long
 	/// </summary>
@@ -26,13 +33,18 @@ public sealed class StrongIdModelBinder<T> : IModelBinder
 			return Task.CompletedTask;
 		}
 
+		// Set the model state value
 		bindingContext.ModelState.SetModelValue(bindingContext.ModelName, valueProviderResult);
 
-		// Get the value and attempt to parse it as a long
-		bindingContext.Result = F.ParseInt64(valueProviderResult.FirstValue).Switch(
-			some: x => ModelBindingResult.Success(new T { Value = x }),
-			none: _ => ModelBindingResult.Failed()
-		);
+		// Get the actual value and attempt to parse it
+		bindingContext.Result =
+			Parse(
+				valueProviderResult.FirstValue
+			)
+			.Switch(
+				some: x => ModelBindingResult.Success(new TId { Value = x }),
+				none: _ => ModelBindingResult.Failed()
+			);
 
 		return Task.CompletedTask;
 	}
