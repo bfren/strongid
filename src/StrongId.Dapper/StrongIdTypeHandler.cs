@@ -1,4 +1,4 @@
-// Mileage Tracker
+// StrongId: Strongly-Typed ID Values
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
 using System;
@@ -59,6 +59,6 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 				id,
 
 			_ =>
-				parse(value.ToString()).Unwrap(defaultValue)
+				parse(value?.ToString()).Unwrap(defaultValue)
 		};
 }
