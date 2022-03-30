@@ -11,7 +11,7 @@ namespace StrongId.Json;
 /// <summary>
 /// <see cref="IStrongId"/> JSON converter factory
 /// </summary>
-public sealed class StrongIdConverterFactory : JsonConverterFactory
+public sealed class StrongIdJsonConverterFactory : JsonConverterFactory
 {
 	/// <summary>
 	/// Returns true if <paramref name="typeToConvert"/> inherits from <see cref="IStrongId"/>
@@ -24,31 +24,31 @@ public sealed class StrongIdConverterFactory : JsonConverterFactory
 	/// Creates JsonConverter using <see cref="IStrongId"/> type as generic argument
 	/// </summary>
 	/// <param name="typeToConvert"><see cref="IStrongId"/> type</param>
-	/// <param name="options">JsonSerializerOptions</param>
-	/// <exception cref="JsonException"></exception>
+	/// <param name="options"></param>
+	/// <exception cref="JsonConverterException"></exception>
 	public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
 	{
 		// IStrongId<> requires one type argument
 		var strongIdValueType = TypeF.GetStrongIdValueType(typeToConvert);
 		if (strongIdValueType is null)
 		{
-			throw new JsonException($"{typeToConvert} does not implement {typeof(IStrongId<>)}.");
+			throw new JsonConverterException($"{typeToConvert} does not implement {typeof(IStrongId<>)}.");
 		}
 
 		// Use the Value type to determine which converter to use
 		var strongIdConverter = strongIdValueType switch
 		{
 			Type t when t == typeof(Guid) =>
-				typeof(GuidIdConverter<>),
+				typeof(GuidIdJsonConverter<>),
 
 			Type t when t == typeof(int) =>
-				typeof(IntIdConverter<>),
+				typeof(IntIdJsonConverter<>),
 
 			Type t when t == typeof(long) =>
-				typeof(LongIdConverter<>),
+				typeof(LongIdJsonConverter<>),
 
 			{ } t =>
-				throw new JsonException($"StrongId with value type {t} is not supported.")
+				throw new JsonConverterException($"StrongId with value type {t} is not supported.")
 		};
 
 		// Attempt to create and return the converter
@@ -59,7 +59,7 @@ public sealed class StrongIdConverterFactory : JsonConverterFactory
 				x,
 
 			_ =>
-				throw new JsonException($"Unable to create {typeof(StrongIdConverter<>)} for type {typeToConvert}.")
+				throw new JsonConverterException($"Unable to create {typeof(StrongIdJsonConverter<>)} for type {typeToConvert}."),
 		};
 	}
 }

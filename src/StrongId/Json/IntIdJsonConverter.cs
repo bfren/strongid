@@ -11,16 +11,15 @@ namespace StrongId.Json;
 /// <see cref="IStrongId"/> JSON converter for <see cref="int"/> value types
 /// </summary>
 /// <inheritdoc cref="StrongIdConverter{TId, TIdValue}"/>
-public sealed class IntIdConverter<TId> : StrongIdConverter<TId>
+public sealed class IntIdJsonConverter<TId> : StrongIdJsonConverter<TId>
 	where TId : class, IStrongId<int>, new()
 {
 	/// <summary>
 	/// Read <see cref="IStrongId"/> type value
 	/// </summary>
-	/// <param name="reader">Utf8JsonReader</param>
+	/// <param name="reader"></param>
 	/// <param name="typeToConvert"><see cref="IStrongId"/> type</param>
-	/// <param name="options">JsonSerializerOptions</param>
-	/// <exception cref="JsonException"></exception>
+	/// <param name="options"></param>
 	public override TId? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
 		new()
 		{

@@ -3,37 +3,42 @@
 
 using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace StrongId.Json;
 
 /// <summary>
-/// <see cref="IStrongId"/> JSON converter for <see cref="Guid"/> value types
+/// <see cref="IStrongId"/> JSON converter for <see cref="long"/> value types
 /// </summary>
 /// <inheritdoc cref="StrongIdConverter{TId, TIdValue}"/>
-public sealed class GuidIdConverter<TId> : StrongIdConverter<TId>
-	where TId : class, IStrongId<Guid>, new()
+public sealed class LongIdJsonConverter<TId> : StrongIdJsonConverter<TId>
+	where TId : class, IStrongId<long>, new()
 {
 	/// <summary>
 	/// Read <see cref="IStrongId"/> type value
 	/// </summary>
-	/// <param name="reader">Utf8JsonReader</param>
+	/// <param name="reader"></param>
 	/// <param name="typeToConvert"><see cref="IStrongId"/> type</param>
-	/// <param name="options">JsonSerializerOptions</param>
+	/// <param name="options"></param>
 	public override TId? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) =>
 		new()
 		{
 			Value = reader.TokenType switch
 			{
-				// Handle strings
-				JsonTokenType.String =>
-					F.ParseGuid(reader.GetString()).Switch(
+				// Handle numbers
+				JsonTokenType.Number =>
+					reader.GetInt64(),
+
+				// Handle strings if strings are allowed
+				JsonTokenType.String when (options.NumberHandling & JsonNumberHandling.AllowReadingFromString) != 0 =>
+					F.ParseInt64(reader.GetString()).Switch(
 						some: x => x,
-						none: _ => Guid.Empty
+						none: _ => 0L
 					),
 
 				// Handle default
 				_ =>
-					TrySkip(reader, Guid.Empty)
+					TrySkip(reader, 0L)
 			}
 		};
 }
