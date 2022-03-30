@@ -59,6 +59,9 @@
 		<Copyright>Copyright © bfren.dev $([System.DateTime]::Now.ToString(yyyy))</Copyright>
 		<Version>$(MileageVersion)</Version>
 		<Description>$(MSBuildProjectName) library</Description>
+		<PackageLicenseFile>$(LicenceFile)</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/bfren/strongid</PackageProjectUrl>
+		<PackageReadmeFile>$(ReadmeFile)</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/bfren/strongid</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
