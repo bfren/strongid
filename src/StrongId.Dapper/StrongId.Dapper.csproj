@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>StrongId.Dapper: TypeHandlers to enable Dapper support for StrongIds.</Description>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\StrongId\StrongId.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.0.123" />
+	</ItemGroup>
+</Project>
