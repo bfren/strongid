@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A2579173-D4A
 	ProjectSection(SolutionItems) = preProject
 		src\.editorconfig = src\.editorconfig
 		src\Directory.Build.props = src\Directory.Build.props
+		src\Local.pack.props = src\Local.pack.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6BDA45CF-017D-48EA-9887-22798C861B95}"
@@ -17,9 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6BDA45CF
 		tests\Directory.Build.props = tests\Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongId.Dapper", "src\StrongId.Dapper\StrongId.Dapper.csproj", "{73D5E244-DD4B-4081-AD62-B70DA1FDCFB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongId.Dapper", "src\StrongId.Dapper\StrongId.Dapper.csproj", "{73D5E244-DD4B-4081-AD62-B70DA1FDCFB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongId.Mvc", "src\StrongId.Mvc\StrongId.Mvc.csproj", "{4414DBAC-49FC-46BC-A820-41BA8927A763}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongId.Mvc", "src\StrongId.Mvc\StrongId.Mvc.csproj", "{4414DBAC-49FC-46BC-A820-41BA8927A763}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{13D8C8C5-5299-4057-93B4-A8B4EC66DD1E}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,11 +37,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\workflows\workflow-cleanup.yml = .github\workflows\workflow-cleanup.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.StrongId", "tests\Tests.StrongId\Tests.StrongId.csproj", "{251CF647-6EF7-4275-B6FA-EF23D81DE60E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.StrongId", "tests\Tests.StrongId\Tests.StrongId.csproj", "{251CF647-6EF7-4275-B6FA-EF23D81DE60E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.StrongId.Dapper", "tests\Tests.StrongId.Dapper\Tests.StrongId.Dapper.csproj", "{3AFEC29F-0E27-4777-99FD-8DF569D632C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.StrongId.Dapper", "tests\Tests.StrongId.Dapper\Tests.StrongId.Dapper.csproj", "{3AFEC29F-0E27-4777-99FD-8DF569D632C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.StrongId.Mvc", "tests\Tests.StrongId.Mvc\Tests.StrongId.Mvc.csproj", "{7D99D6E6-14FD-4984-8589-A6B64E1563B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.StrongId.Mvc", "tests\Tests.StrongId.Mvc\Tests.StrongId.Mvc.csproj", "{7D99D6E6-14FD-4984-8589-A6B64E1563B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

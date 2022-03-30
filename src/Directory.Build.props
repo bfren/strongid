@@ -52,7 +52,7 @@
 
 	<!-- Get Version -->
 	<PropertyGroup Label="Version">
-		<MileageVersion>$([System.IO.File]::ReadAllText('$(VersionPath)'))</MileageVersion>
+		<StrongIdVersion>$([System.IO.File]::ReadAllText('$(VersionPath)'))</StrongIdVersion>
 	</PropertyGroup>
 
 	<!-- Package Configuration -->
@@ -85,7 +85,7 @@
 	-->
 	<Import Project="$(LocalPackPath)" Condition="Exists('$(LocalPackPath)')"/>
 	<Target Name="PackAndPushToLocalNuget" AfterTargets="DispatchToInnerBuilds" Condition="Exists('$(LocalPackPath)') and '$(Configuration)'=='Release'">
-		<Exec Command="dotnet pack &quot;$(ProjectFileName)&quot; -p:PackageVersion=$(RndVersion) --no-build --configuration Release"/>
+		<Exec Command="dotnet pack &quot;$(ProjectFileName)&quot; -p:PackageVersion=$(StrongIdVersion) --no-build --configuration Release"/>
 		<Exec Command="nuget init &quot;$(ProjectDir)bin\Release&quot; &quot;$(LocalNugetRepository)&quot;"/>
 		<Exec Command="del &quot;$(ProjectDir)bin\Release\*.nupkg&quot;"/>
 	</Target>
