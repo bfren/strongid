@@ -2,4 +2,7 @@
 	<PropertyGroup>
 		<RootNamespace>StrongId.Mvc</RootNamespace>
 	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\StrongId.Mvc\StrongId.Mvc.csproj" />
+	</ItemGroup>
 </Project>
