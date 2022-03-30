@@ -3,6 +3,6 @@
 		<RootNamespace>StrongId.Dapper</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\StrongId.Dapper\StrongId.Dapper.csproj" />
+		<ProjectReference Include="..\..\src\StrongId.Dapper\StrongId.Dapper.csproj" />
 	</ItemGroup>
 </Project>
