@@ -1,6 +1,8 @@
-// Mileage Tracker
+// StrongId: Strongly-Typed ID Values
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
+using System;
+using System.Linq;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace StrongId.Functions;
