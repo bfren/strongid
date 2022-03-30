@@ -10,7 +10,7 @@ namespace StrongId.Json;
 /// <summary>
 /// <see cref="IStrongId"/> JSON converter for <see cref="int"/> value types
 /// </summary>
-/// <inheritdoc cref="StrongIdConverter{TId, TIdValue}"/>
+/// <inheritdoc cref="StrongIdJsonConverter{TId}"/>
 public sealed class IntIdJsonConverter<TId> : StrongIdJsonConverter<TId>
 	where TId : class, IStrongId<int>, new()
 {
@@ -38,7 +38,7 @@ public sealed class IntIdJsonConverter<TId> : StrongIdJsonConverter<TId>
 
 				// Handle default
 				_ =>
-					TrySkip(reader, 0)
+					TrySkip(ref reader, 0)
 			}
 		};
 }

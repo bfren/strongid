@@ -29,7 +29,7 @@ public abstract class StrongIdJsonConverter<TId> : JsonConverter<TId>
 	/// <param name="reader"></param>
 	/// <param name="defaultValue"></param>
 	/// <exception cref="JsonException"></exception>
-	internal TIdValue TrySkip<TIdValue>(Utf8JsonReader reader, TIdValue defaultValue) =>
+	internal TIdValue TrySkip<TIdValue>(ref Utf8JsonReader reader, TIdValue defaultValue) =>
 		reader.TrySkip() switch
 		{
 			true =>
