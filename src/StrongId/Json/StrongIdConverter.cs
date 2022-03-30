@@ -1,4 +1,4 @@
-// Mileage Tracker
+// StrongId: Strongly-Typed ID Values
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
 using System.Text.Json;
@@ -10,9 +10,8 @@ namespace StrongId.Json;
 /// <see cref="IStrongId"/> JSON converter
 /// </summary>
 /// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
-/// <typeparam name="TIdValue">StrongId Value type</typeparam>
-public abstract class StrongIdConverter<TId, TIdValue> : JsonConverter<TId>
-	where TId : IStrongId<TIdValue>, new()
+public abstract class StrongIdConverter<TId> : JsonConverter<TId>
+	where TId : class, IStrongId, new()
 {
 	/// <summary>
 	/// Write a <see cref="IStrongId"/> type value
@@ -26,10 +25,11 @@ public abstract class StrongIdConverter<TId, TIdValue> : JsonConverter<TId>
 	/// <summary>
 	/// Try to skip the JSON token (because it hasn't been matched correctly) and return a default value
 	/// </summary>
+	/// <typeparam name="TIdValue">StrongId Value type</typeparam>
 	/// <param name="reader"></param>
 	/// <param name="defaultValue"></param>
 	/// <exception cref="JsonException"></exception>
-	internal TIdValue TrySkip(Utf8JsonReader reader, TIdValue defaultValue) =>
+	internal TIdValue TrySkip<TIdValue>(Utf8JsonReader reader, TIdValue defaultValue) =>
 		reader.TrySkip() switch
 		{
 			true =>

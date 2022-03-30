@@ -10,8 +10,8 @@ namespace StrongId.Json;
 /// <see cref="IStrongId"/> JSON converter for <see cref="Guid"/> value types
 /// </summary>
 /// <inheritdoc cref="StrongIdConverter{TId, TIdValue}"/>
-public sealed class GuidIdConverter<TId> : StrongIdConverter<TId, Guid>
-	where TId : IStrongId<Guid>, new()
+public sealed class GuidIdConverter<TId> : StrongIdConverter<TId>
+	where TId : class, IStrongId<Guid>, new()
 {
 	/// <summary>
 	/// Read <see cref="IStrongId"/> type value

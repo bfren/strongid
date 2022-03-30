@@ -59,7 +59,7 @@ public sealed class StrongIdConverterFactory : JsonConverterFactory
 				x,
 
 			_ =>
-				throw new JsonException($"Unable to create {typeof(StrongIdConverter<,>)} for type {typeToConvert}.")
+				throw new JsonException($"Unable to create {typeof(StrongIdConverter<>)} for type {typeToConvert}.")
 		};
 	}
 }
