@@ -23,14 +23,14 @@ public class Parse_Tests : Abstracts.Parse_Tests<LongIdModelBinder<Parse_Tests.T
 
 	[Theory]
 	[MemberData(nameof(Invalid_Integer_Input), MemberType = typeof(IntIdModelBinder_Tests.Parse_Tests))]
-	public override void Test01_Invalid_Input_Returns_None_With_UnableToParseValueAsReason(string? input)
+	public override void Test01_Invalid_Input_Returns_None_With_UnableToParseValueAsMsg(string? input)
 	{
 		Test01(input);
 	}
 
 	[Theory]
 	[InlineData(null)]
-	public override void Test02_Null_Input_Returns_None_With_UnableToParseValueAsReason(string? input)
+	public override void Test02_Null_Input_Returns_None_With_UnableToParseValueAsMsg(string? input)
 	{
 		Test02(input);
 	}

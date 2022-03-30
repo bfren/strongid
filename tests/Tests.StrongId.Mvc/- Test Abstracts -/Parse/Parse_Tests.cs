@@ -3,7 +3,7 @@
 
 using StrongId;
 using StrongId.Mvc;
-using static MaybeF.F.R;
+using static MaybeF.F.M;
 
 namespace Abstracts;
 
@@ -27,7 +27,7 @@ public abstract class Parse_Tests<TBinder, TId, TIdValue>
 		Assert.Equal(expected, some);
 	}
 
-	public abstract void Test01_Invalid_Input_Returns_None_With_UnableToParseValueAsReason(string? input);
+	public abstract void Test01_Invalid_Input_Returns_None_With_UnableToParseValueAsMsg(string? input);
 
 	protected static void Test01(string? input)
 	{
@@ -38,12 +38,12 @@ public abstract class Parse_Tests<TBinder, TId, TIdValue>
 		var result = binder.Parse(input);
 
 		// Assert
-		var msg = result.AssertNone().AssertType<UnableToParseValueAsReason>();
+		var msg = result.AssertNone().AssertType<UnableToParseValueAsMsg>();
 		Assert.Equal(typeof(TIdValue), msg.Type);
 		Assert.Equal(input, msg.Value);
 	}
 
-	public abstract void Test02_Null_Input_Returns_None_With_UnableToParseValueAsReason(string? input);
+	public abstract void Test02_Null_Input_Returns_None_With_UnableToParseValueAsMsg(string? input);
 
 	protected static void Test02(string? input)
 	{
@@ -54,7 +54,7 @@ public abstract class Parse_Tests<TBinder, TId, TIdValue>
 		var result = binder.Parse(input);
 
 		// Assert
-		var msg = result.AssertNone().AssertType<UnableToParseValueAsReason>();
+		var msg = result.AssertNone().AssertType<UnableToParseValueAsMsg>();
 		Assert.Equal(typeof(TIdValue), msg.Type);
 		Assert.Empty(msg.Value);
 	}
