@@ -22,7 +22,7 @@ public interface IStrongId
 /// <summary>
 /// Represents a strongly-typed ID with a custom ID value type
 /// </summary>
-/// <typeparam name="T">StrongId Value type</typeparam>
+/// <typeparam name="T"><see cref="IStrongId"/> Value type</typeparam>
 public interface IStrongId<T> : IStrongId
 {
 	/// <inheritdoc/>

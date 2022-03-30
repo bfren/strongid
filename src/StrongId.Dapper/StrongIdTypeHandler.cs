@@ -41,7 +41,7 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 	/// <summary>
 	/// Set ID value
 	/// </summary>
-	/// <param name="parameter">IDbDataParameter</param>
+	/// <param name="parameter"></param>
 	/// <param name="value"><see cref="IStrongId"/> value</param>
 	public override void SetValue(IDbDataParameter parameter, T value) =>
 		parameter.Value = value.Value;
@@ -49,10 +49,10 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 	/// <summary>
 	/// Returns a strongly-typed value
 	/// </summary>
-	/// <typeparam name="TIdValue">StrongId Value type</typeparam>
-	/// <param name="value">Value to handle</param>
+	/// <typeparam name="TIdValue"><see cref="IStrongId"/> Value type</typeparam>
+	/// <param name="value">Value to parse</param>
 	/// <param name="parse">Parse function</param>
-	/// <param name="defaultValue">Default value if parsing fails</param>
+	/// <param name="defaultValue">Default value to be used if parsing fails</param>
 	internal TIdValue GetValueAsType<TIdValue>(object value, Func<string?, Maybe<TIdValue>> parse, TIdValue defaultValue) =>
 		value switch
 		{
