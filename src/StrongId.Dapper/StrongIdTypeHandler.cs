@@ -12,12 +12,13 @@ namespace StrongId.Dapper;
 /// </summary>
 /// <typeparam name="T"><see cref="IStrongId"/> type</typeparam>
 public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandler<T>
-	where T : IStrongId, new()
+	where T : class, IStrongId, new()
 {
 	/// <summary>
 	/// Parse value and create new <see cref="IStrongId"/>
 	/// </summary>
 	/// <param name="value"><see cref="IStrongId"/> Value</param>
+	/// <exception cref="InvalidOperationException"></exception>
 	public override T Parse(object value) =>
 		new()
 		{
@@ -33,7 +34,7 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 					GetValueAsType(value, F.ParseInt64, 0L),
 
 				_ =>
-					value
+					throw new InvalidOperationException($"StrongId with value type {typeof(object)} is not supported.")
 			}
 		};
 
