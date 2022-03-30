@@ -11,6 +11,6 @@ public sealed class IntIdModelBinder<TId> : StrongIdModelBinder<TId, int>
 	where TId : class, IStrongId<int>, new()
 {
 	/// <inheritdoc/>
-	internal override Maybe<int> Parse(string input) =>
+	internal override Maybe<int> Parse(string? input) =>
 		F.ParseInt32(input);
 }

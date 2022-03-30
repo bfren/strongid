@@ -13,6 +13,6 @@ public sealed class GuidIdModelBinder<TId> : StrongIdModelBinder<TId, Guid>
 	where TId : class, IStrongId<Guid>, new()
 {
 	/// <inheritdoc/>
-	internal override Maybe<Guid> Parse(string input) =>
+	internal override Maybe<Guid> Parse(string? input) =>
 		F.ParseGuid(input);
 }

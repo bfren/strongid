@@ -18,7 +18,7 @@ public abstract class StrongIdModelBinder<TId, TIdValue> : IModelBinder
 	/// StrongId Value parse function
 	/// </summary>
 	/// <param name="input">Input string from the model binder</param>
-	internal abstract Maybe<TIdValue> Parse(string input);
+	internal abstract Maybe<TIdValue> Parse(string? input);
 
 	/// <summary>
 	/// Get value and attempt to parse as a long

@@ -7,111 +7,122 @@ namespace StrongId.Mvc.StrongIdModelBinder_Tests;
 
 public class BindModelAsync_Tests
 {
-	[Fact]
-	public async Task ValueProvider_Result_Is_None_Returns_Original_ModelBindingResult()
+	internal static (StrongIdModelBinder<TestLongId, long>, Vars) Setup()
 	{
-		// Arrange
 		var modelName = Rnd.Str;
+		var modelState = new ModelStateDictionary();
+		var modelValue = Rnd.Str;
+		var valueResult = new ValueProviderResult(modelValue);
 
-		var provider = Substitute.For<IValueProvider>();
-		provider.GetValue(modelName).Returns(ValueProviderResult.None);
+		var valueProvider = Substitute.For<IValueProvider>();
+		valueProvider.GetValue(modelName)
+			.Returns(valueResult);
 
 		var bindingResult = new ModelBindingResult();
 
-		var context = Substitute.ForPartsOf<ModelBindingContext>();
-		context.ModelName.Returns(modelName);
-		context.Result = bindingResult;
-		context.ValueProvider.Returns(provider);
+		var bindingContext = Substitute.ForPartsOf<ModelBindingContext>();
+		bindingContext.ModelName
+			.Returns(modelName);
+		bindingContext.Result
+			.Returns(bindingResult);
+		bindingContext.ModelState
+			.Returns(modelState);
+		bindingContext.ValueProvider
+			.Returns(valueProvider);
 
-		var binder = new StrongIdModelBinder<IdType>();
+		var parse = Substitute.For<Func<string?, Maybe<long>>>();
+		parse.Invoke(default)
+			.ReturnsForAnyArgs(Create.None<long>());
+
+		var binder = Substitute.For<StrongIdModelBinder<TestLongId, long>>();
+		binder.Parse(default!)
+			.ReturnsForAnyArgs(x => parse(x[0].ToString()));
+
+		return (binder, new(bindingContext, bindingResult, modelName, modelState, modelValue, parse, valueProvider));
+	}
+
+	public sealed record class Vars(
+		ModelBindingContext BindingContext,
+		ModelBindingResult BindingResult,
+		string ModelName,
+		ModelStateDictionary ModelState,
+		string ModelValue,
+		Func<string?, Maybe<long>> Parse,
+		IValueProvider ValueProvider
+	);
+
+	[Fact]
+	public async Task ValueProvider_Result_Is_None__Does_Not_Change_BindingResult()
+	{
+		// Arrange
+		var (binder, v) = Setup();
+		v.ValueProvider.GetValue(v.ModelName)
+			.Returns(ValueProviderResult.None);
 
 		// Act
-		await binder.BindModelAsync(context);
+		await binder.BindModelAsync(v.BindingContext);
 
 		// Assert
-		Assert.Equal(bindingResult, context.Result);
+		Assert.Equal(v.BindingResult, v.BindingContext.Result);
 	}
 
 	[Fact]
-	public async Task Sets_Model_Value_Using_ValueProvider_Result()
+	public async Task ValueProvider_Result_Is_Not_None__Sets_Model_Value_Using_Result_Value()
 	{
 		// Arrange
-		var modelName = Rnd.Str;
-		var modelValue = new ValueProviderResult(Rnd.Str);
-
-		var provider = Substitute.For<IValueProvider>();
-		provider.GetValue(modelName).Returns(modelValue);
-
-		var state = Substitute.ForPartsOf<ModelStateDictionary>();
-
-		var context = Substitute.ForPartsOf<ModelBindingContext>();
-		context.ModelName.Returns(modelName);
-		context.ModelState.Returns(state);
-		context.ValueProvider.Returns(provider);
-
-		var binder = new StrongIdModelBinder<IdType>();
+		var (binder, v) = Setup();
 
 		// Act
-		await binder.BindModelAsync(context);
+		await binder.BindModelAsync(v.BindingContext);
 
 		// Assert
-		Assert.Equal(modelValue.FirstValue, state[modelName]?.AttemptedValue);
+		Assert.Equal(v.ModelValue, v.ModelState[v.ModelName]?.AttemptedValue);
 	}
 
 	[Fact]
-	public async Task ValueProvider_Result_Is_Not_Valid_Id_Sets_Result_Failed()
+	public async Task ValueProvider_Result_Is_Not_None__Calls_Parse__With_Correct_Value()
 	{
 		// Arrange
-		var modelName = Rnd.Str;
-		var modelValue = new ValueProviderResult(Rnd.Str);
-
-		var provider = Substitute.For<IValueProvider>();
-		provider.GetValue(modelName).Returns(modelValue);
-
-		var state = Substitute.ForPartsOf<ModelStateDictionary>();
-
-		var context = Substitute.ForPartsOf<ModelBindingContext>();
-		context.ModelName.Returns(modelName);
-		context.ModelState.Returns(state);
-		context.ValueProvider.Returns(provider);
-
-		var binder = new StrongIdModelBinder<IdType>();
+		var (binder, v) = Setup();
 
 		// Act
-		await binder.BindModelAsync(context);
+		await binder.BindModelAsync(v.BindingContext);
 
 		// Assert
-		Assert.False(context.Result.IsModelSet);
+		v.Parse.Received().Invoke(v.ModelValue);
 	}
 
 	[Fact]
-	public async Task ValueProvider_Result_Is_Valid_ULong_Sets_Result_Success_With_Id_Value()
+	public async Task ValueProvider_Result_Is_Not_None__Calls_Parse__Receives_None__Returns_Result_Failed()
 	{
 		// Arrange
-		var modelName = Rnd.Str;
+		var (binder, v) = Setup();
+
+		// Act
+		await binder.BindModelAsync(v.BindingContext);
+
+		// Assert
+		Assert.False(v.BindingContext.Result.IsModelSet);
+		Assert.Equal("Failed", v.BindingContext.Result.ToString());
+	}
+
+	[Fact]
+	public async Task ValueProvider_Result_Is_Not_None__Calls_Parse__Receives_Some__Returns_Result_Success_With_Value()
+	{
+		// Arrange
+		var (binder, v) = Setup();
 		var id = Rnd.Lng;
-		var modelValue = new ValueProviderResult(id.ToString());
-
-		var provider = Substitute.For<IValueProvider>();
-		provider.GetValue(modelName).Returns(modelValue);
-
-		var state = Substitute.ForPartsOf<ModelStateDictionary>();
-
-		var context = Substitute.ForPartsOf<ModelBindingContext>();
-		context.ModelName.Returns(modelName);
-		context.ModelState.Returns(state);
-		context.ValueProvider.Returns(provider);
-
-		var binder = new StrongIdModelBinder<IdType>();
+		v.Parse(v.ModelValue)
+			.Returns(id);
 
 		// Act
-		await binder.BindModelAsync(context);
+		await binder.BindModelAsync(v.BindingContext);
 
 		// Assert
-		Assert.True(context.Result.IsModelSet);
-		var model = Assert.IsType<IdType>(context.Result.Model);
+		Assert.True(v.BindingContext.Result.IsModelSet);
+		var model = Assert.IsType<TestLongId>(v.BindingContext.Result.Model);
 		Assert.Equal(id, model.Value);
 	}
 
-	public sealed record class IdType : LongId;
+	public sealed record class TestLongId : LongId;
 }
