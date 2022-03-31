@@ -131,7 +131,7 @@ public class Parse_Tests
 		public InvalidObjectId() : this(new()) { }
 	}
 
-	public sealed record class InvalidDateTimeId(DateTime Value) : IStrongId<DateTime>
+	public sealed record class InvalidDateTimeId(object Value) : IStrongId
 	{
 		public InvalidDateTimeId() : this(DateTime.MinValue) { }
 	}

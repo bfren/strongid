@@ -77,7 +77,10 @@ public class GetBinderFromModelType_Tests
 
 	public sealed record class RandomType;
 
-	public sealed record class TestDateTimeId : StrongId<DateTime>;
+	public sealed record class TestDateTimeId(object Value) : IStrongId
+	{
+		public TestDateTimeId() : this(Rnd.DateTime) { }
+	}
 
 	public sealed record class TestGuidId : GuidId;
 
