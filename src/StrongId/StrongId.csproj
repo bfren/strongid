@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>StrongId: Strongly-typed ID classes and methods, including JSON serialisation.</Description>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
+		<PackageReference Include="System.Text.Json" Version="6.0.2" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0-preview.2.*" />
+		<PackageReference Include="System.Text.Json" Version="7.0.0-preview.2.*" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Rnd" Version="8.1.1" PrivateAssets="All" />
+	</ItemGroup>
+</Project>
