@@ -40,8 +40,8 @@ public static partial class TypeF
 									  select i.GenericTypeArguments[0];
 				var valueTypes = valueTypesQuery.ToList();
 
-				// This means the type doesn't implement IStrongId<T>,
-				// or it implements it with multiple Value types, which is not supported
+				// If the count is not 1, this means the type doesn't implement IStrongId<T>,
+				// or it implements it multiple times, which is not supported
 				if (valueTypes.Count != 1)
 				{
 					return null;

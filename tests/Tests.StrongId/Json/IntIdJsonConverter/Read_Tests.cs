@@ -3,7 +3,7 @@
 
 namespace StrongId.Json.IntIdJsonConverter_Tests;
 
-public class Read_Tests : Abstracts.Read_Tests<int>
+public class Read_Tests : Abstracts.Read_Tests<Read_Tests.TestIntId, int>
 {
 	[Theory]
 	[MemberData(nameof(Helpers.Valid_Numeric_Json_Data), MemberType = typeof(Helpers))]
@@ -32,4 +32,6 @@ public class Read_Tests : Abstracts.Read_Tests<int>
 	{
 		Test03(input, 0);
 	}
+
+	public sealed record class TestIntId : IntId;
 }

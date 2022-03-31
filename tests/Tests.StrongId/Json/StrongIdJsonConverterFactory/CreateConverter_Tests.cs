@@ -17,7 +17,29 @@ public class CreateConverter_Tests
 
 		// Assert
 		var ex = Assert.Throws<JsonConverterException>(action);
-		Assert.Equal($"{type} does not implement {typeof(IStrongId<>)}.", ex.Message);
+		Assert.Equal(
+			$"{type} is an invalid {typeof(IStrongId)}: " +
+			"please implement one of the provided abstract ID record types.",
+			ex.Message
+		);
+	}
+
+	[Fact]
+	public void Type_Does_Not_Have_Parameterless_Constructor__Throws_JsonConverterException()
+	{
+		// Arrange
+		var factory = new StrongIdJsonConverterFactory();
+		var type = typeof(TestIdWithoutParameterlessConstructor);
+
+		// Act
+		var action = void () => factory.CreateConverter(type, Helpers.Options);
+
+		// Assert
+		var ex = Assert.Throws<JsonConverterException>(action);
+		Assert.Equal(
+			$"{type} does not have a parameterless constructor.",
+			ex.Message
+		);
 	}
 
 	[Fact]
@@ -25,7 +47,7 @@ public class CreateConverter_Tests
 	{
 		// Arrange
 		var factory = new StrongIdJsonConverterFactory();
-		var type = typeof(TestInvalidId);
+		var type = typeof(TestIdWithInvalidType);
 
 		// Act
 		var action = void () => factory.CreateConverter(type, Helpers.Options);
@@ -51,7 +73,12 @@ public class CreateConverter_Tests
 
 	public sealed record class RandomClass;
 
-	public sealed record class TestInvalidId(DateTime Value) : IStrongId<DateTime>;
+	public sealed record class TestIdWithoutParameterlessConstructor(long Value) : LongId(Value);
+
+	public sealed record class TestIdWithInvalidType(DateTime Value) : StrongId<DateTime>(Value)
+	{
+		public TestIdWithInvalidType() : this(Rnd.DateTime) { }
+	}
 
 	public sealed record class TestId : GuidId;
 }

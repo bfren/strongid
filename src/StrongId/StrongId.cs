@@ -1,15 +1,28 @@
 // StrongId: Strongly-Typed ID Values
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
+using System;
+
 namespace StrongId;
 
 /// <inheritdoc cref="IStrongId{T}"/>
-/// <param name="Value">ID value</param>
+/// <param name="Value">ID Value</param>
 public abstract record class StrongId<T>(T Value) : IStrongId<T>
-	where T : new()
 {
 	/// <summary>
-	/// A parameterless constructor is required for data / MVC model binding to work
+	/// Implement <see cref="IStrongId.Value"/> explicitly to enable the type-specific override
 	/// </summary>
-	protected StrongId() : this(new T()) { }
+	/// <exception cref="InvalidCastException"></exception>
+	object IStrongId.Value
+	{
+		get => Value ?? new object();
+		init => Value = value switch
+		{
+			T v =>
+				v,
+
+			_ =>
+				throw new InvalidCastException($"Unable to set ID value to {value}: expecting an object of type {typeof(T)}.")
+		};
+	}
 }

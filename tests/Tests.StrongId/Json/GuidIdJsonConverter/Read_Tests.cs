@@ -3,7 +3,7 @@
 
 namespace StrongId.Json.GuidIdJsonConverter_Tests;
 
-public class Read_Tests : Abstracts.Read_Tests<Guid>
+public class Read_Tests : Abstracts.Read_Tests<Read_Tests.TestGuidId, Guid>
 {
 	[Theory]
 	[MemberData(nameof(Helpers.Valid_String_Json_Data), MemberType = typeof(Helpers))]
@@ -32,4 +32,6 @@ public class Read_Tests : Abstracts.Read_Tests<Guid>
 	{
 		Test03(input, Guid.Empty);
 	}
+
+	public sealed record class TestGuidId : GuidId;
 }

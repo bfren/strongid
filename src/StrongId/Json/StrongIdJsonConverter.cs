@@ -10,7 +10,7 @@ namespace StrongId.Json;
 /// <see cref="IStrongId"/> JSON converter
 /// </summary>
 /// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
-public abstract class StrongIdJsonConverter<TId> : JsonConverter<TId>
+internal abstract class StrongIdJsonConverter<TId> : JsonConverter<TId>
 	where TId : class, IStrongId, new()
 {
 	/// <summary>

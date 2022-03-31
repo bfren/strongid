@@ -9,7 +9,7 @@ namespace Abstracts;
 
 public abstract class Parse_Tests<TBinder, TId, TIdValue>
 	where TBinder : StrongIdModelBinder<TId, TIdValue>, new()
-	where TId : class, IStrongId<TIdValue>, new()
+	where TId : StrongId<TIdValue>, new()
 {
 	public abstract void Test00_Valid_Input_Returns_Parsed_Result(string? input);
 

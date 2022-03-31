@@ -3,7 +3,7 @@
 
 namespace StrongId.Json.LongIdJsonConverter_Tests;
 
-public class Read_Tests : Abstracts.Read_Tests<long>
+public class Read_Tests : Abstracts.Read_Tests<Read_Tests.TestLongId, long>
 {
 	[Theory]
 	[MemberData(nameof(Helpers.Valid_Numeric_Json_Data), MemberType = typeof(Helpers))]
@@ -32,4 +32,6 @@ public class Read_Tests : Abstracts.Read_Tests<long>
 	{
 		Test03(input, 0L);
 	}
+
+	public sealed record class TestLongId : LongId;
 }
