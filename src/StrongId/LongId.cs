@@ -11,6 +11,17 @@ namespace StrongId;
 public abstract record class LongId : StrongId<long>
 {
 	/// <summary>
+	/// Create ID with default value
+	/// </summary>
+	protected LongId() : base(0L) { }
+
+	/// <summary>
+	/// Create ID with value
+	/// </summary>
+	/// <param name="value">ID Value</param>
+	protected LongId(long value) : base(value) { }
+
+	/// <summary>
 	/// Generate a new <typeparamref name="TId"/> with a random <see cref="IStrongId.Value"/>
 	/// </summary>
 	/// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>

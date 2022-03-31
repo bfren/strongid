@@ -1,8 +1,6 @@
 // StrongId: Strongly-Typed ID Values
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
-using System;
-
 namespace StrongId;
 
 /// <summary>
@@ -14,7 +12,7 @@ namespace StrongId;
 public interface IStrongId
 {
 	/// <summary>
-	/// ID value
+	/// ID Value
 	/// </summary>
 	object Value { get; init; }
 }
@@ -23,25 +21,8 @@ public interface IStrongId
 /// Represents a strongly-typed ID with a custom ID value type
 /// </summary>
 /// <typeparam name="T"><see cref="IStrongId"/> Value type</typeparam>
-public interface IStrongId<T> : IStrongId
+internal interface IStrongId<T> : IStrongId
 {
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IStrongId.Value"/>
 	new T Value { get; init; }
-
-	/// <summary>
-	/// Implement value explicitly to enable the type-specific override
-	/// </summary>
-	/// <exception cref="InvalidCastException"></exception>
-	object IStrongId.Value
-	{
-		get => Value ?? new object();
-		init => Value = value switch
-		{
-			T v =>
-				v,
-
-			_ =>
-				throw new InvalidCastException($"Unable to set ID value to {value}: expecting an object of type {typeof(T)}.")
-		};
-	}
 }
