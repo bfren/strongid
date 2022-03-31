@@ -8,16 +8,16 @@ namespace StrongId.Mvc.StrongIdModelBinderProvider_Tests;
 public class GetBinderFromModelType_Tests
 {
 	[Fact]
-	public void ModelType_Does_Not_Implement_StrongId__Throws_ModelBinderException()
+	public void ModelType_Does_Not_Implement_StrongId__Returns_Null()
 	{
 		// Arrange
 		var type = typeof(RandomType);
 
 		// Act
-		var action = () => StrongIdModelBinderProvider.GetBinderFromModelType(type);
+		var result = StrongIdModelBinderProvider.GetBinderFromModelType(type);
 
 		// Assert
-		Assert.Throws<ModelBinderException>(action);
+		Assert.Null(result);
 	}
 
 	[Fact]
@@ -77,7 +77,7 @@ public class GetBinderFromModelType_Tests
 
 	public sealed record class RandomType;
 
-	public sealed record class TestDateTimeId(object Value) : IStrongId
+	public sealed record class TestDateTimeId(DateTime Value) : StrongId<DateTime>(Value)
 	{
 		public TestDateTimeId() : this(Rnd.DateTime) { }
 	}

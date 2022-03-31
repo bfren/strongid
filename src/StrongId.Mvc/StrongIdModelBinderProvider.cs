@@ -26,11 +26,11 @@ public sealed class StrongIdModelBinderProvider : IModelBinderProvider
 	/// <exception cref="ModelBinderException"></exception>
 	internal static IModelBinder? GetBinderFromModelType(Type modelType)
 	{
-		// IStrongId<> requires one type argument
+		// If this type isn't a StrongId, return null so MVC can move on to try the next model binder
 		var strongIdValueType = TypeF.GetStrongIdValueType(modelType);
 		if (strongIdValueType is null)
 		{
-			throw new ModelBinderException($"{modelType} does not implement {typeof(StrongId<>)}.");
+			return null;
 		}
 
 		// Use the Value type to determine which binder to use
