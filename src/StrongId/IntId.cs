@@ -27,5 +27,5 @@ public abstract record class IntId : StrongId<int>
 	/// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
 	public static TId RndId<TId>()
 		where TId : StrongId<int>, new() =>
-		new() { Value = Rnd.Int };
+		new() { Value = Rnd.NumberF.GetInt32() };
 }
