@@ -28,11 +28,22 @@ public sealed class StrongIdJsonConverterFactory : JsonConverterFactory
 	/// <exception cref="JsonConverterException"></exception>
 	public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
 	{
-		// IStrongId<> requires one type argument
+		// StrongId<> requires one type argument
 		var strongIdValueType = TypeF.GetStrongIdValueType(typeToConvert);
 		if (strongIdValueType is null)
 		{
-			throw new JsonConverterException($"{typeToConvert} does not implement {typeof(IStrongId<>)}.");
+			throw new JsonConverterException(
+				$"{typeToConvert} is an invalid {typeof(IStrongId)}: " +
+				"please implement one of the provided abstract ID record types."
+			);
+		}
+
+		// Ensure there is a parameterless contstructor
+		if (typeToConvert.GetConstructor(Array.Empty<Type>()) is null)
+		{
+			throw new JsonConverterException(
+				$"{typeToConvert} does not have a parameterless constructor."
+			);
 		}
 
 		// Use the Value type to determine which converter to use
@@ -48,7 +59,9 @@ public sealed class StrongIdJsonConverterFactory : JsonConverterFactory
 				typeof(LongIdJsonConverter<>),
 
 			{ } t =>
-				throw new JsonConverterException($"StrongId with value type {t} is not supported.")
+				throw new JsonConverterException(
+					$"StrongId with value type {t} is not supported."
+				)
 		};
 
 		// Attempt to create and return the converter
@@ -59,7 +72,9 @@ public sealed class StrongIdJsonConverterFactory : JsonConverterFactory
 				x,
 
 			_ =>
-				throw new JsonConverterException($"Unable to create {typeof(StrongIdJsonConverter<>)} for type {typeToConvert}."),
+				throw new JsonConverterException(
+					$"Unable to create {typeof(StrongIdJsonConverter<>)} for type {typeToConvert}."
+				)
 		};
 	}
 }
