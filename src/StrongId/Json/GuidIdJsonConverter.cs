@@ -33,7 +33,7 @@ public sealed class GuidIdJsonConverter<TId> : StrongIdJsonConverter<TId>
 
 				// Handle default
 				_ =>
-					TrySkip(ref reader, Guid.Empty)
+					HandleSkip(reader.TrySkip(), Guid.Empty)
 			}
 		};
 }

@@ -26,11 +26,11 @@ public abstract class StrongIdJsonConverter<TId> : JsonConverter<TId>
 	/// Try to skip the JSON token (because it hasn't been matched correctly) and return a default value
 	/// </summary>
 	/// <typeparam name="TIdValue"><see cref="IStrongId"/> Value type</typeparam>
-	/// <param name="reader"></param>
+	/// <param name="skipped"></param>
 	/// <param name="defaultValue"></param>
 	/// <exception cref="JsonException"></exception>
-	internal TIdValue TrySkip<TIdValue>(ref Utf8JsonReader reader, TIdValue defaultValue) =>
-		reader.TrySkip() switch
+	internal TIdValue HandleSkip<TIdValue>(bool skipped, TIdValue defaultValue) =>
+		skipped switch
 		{
 			true =>
 				defaultValue,

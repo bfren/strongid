@@ -38,7 +38,7 @@ public sealed class LongIdJsonConverter<TId> : StrongIdJsonConverter<TId>
 
 				// Handle default
 				_ =>
-					TrySkip(ref reader, 0L)
+					HandleSkip(reader.TrySkip(), 0L)
 			}
 		};
 }
