@@ -18,3 +18,6 @@ dotnet_diagnostic.IDE0058.severity = none
 
 # RCS1102: Make class static.
 dotnet_diagnostic.RCS1102.severity = none
+
+# RCS1118: Mark local variable as const.
+dotnet_diagnostic.RCS1118.severity = none

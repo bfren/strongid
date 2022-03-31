@@ -27,5 +27,5 @@ public abstract record class LongId : StrongId<long>
 	/// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
 	public static TId RndId<TId>()
 		where TId : StrongId<long>, new() =>
-		new() { Value = Rnd.Lng };
+		new() { Value = Rnd.NumberF.GetInt64() };
 }
