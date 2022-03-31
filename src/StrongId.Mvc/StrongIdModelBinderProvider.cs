@@ -30,7 +30,7 @@ public sealed class StrongIdModelBinderProvider : IModelBinderProvider
 		var strongIdValueType = TypeF.GetStrongIdValueType(modelType);
 		if (strongIdValueType is null)
 		{
-			throw new ModelBinderException($"{modelType} does not implement {typeof(IStrongId<>)}.");
+			throw new ModelBinderException($"{modelType} does not implement {typeof(StrongId<>)}.");
 		}
 
 		// Use the Value type to determine which binder to use

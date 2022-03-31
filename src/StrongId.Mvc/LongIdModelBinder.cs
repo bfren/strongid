@@ -8,7 +8,7 @@ namespace StrongId.Mvc;
 /// </summary>
 /// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
 public sealed class LongIdModelBinder<TId> : StrongIdModelBinder<TId, long>
-	where TId : class, IStrongId<long>, new()
+	where TId : LongId, new()
 {
 	/// <inheritdoc/>
 	internal override Maybe<long> Parse(string? input) =>

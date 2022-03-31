@@ -12,7 +12,7 @@ namespace StrongId.Mvc;
 /// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
 /// <typeparam name="TIdValue"><see cref="IStrongId"/> Value type</typeparam>
 public abstract class StrongIdModelBinder<TId, TIdValue> : IModelBinder
-	where TId : class, IStrongId<TIdValue>, new()
+	where TId : StrongId<TIdValue>, new()
 {
 	/// <summary>
 	/// StrongId Value parse function
