@@ -1,87 +1,35 @@
 // StrongId: Unit Tests
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
-using System.Text.Json;
-
 namespace StrongId.Json.LongIdJsonConverter_Tests;
 
-public class Read_Tests : Json_Tests
+public class Read_Tests : Abstracts.Read_Tests<long>
 {
 	[Theory]
-	[InlineData("{0}")]
-	[InlineData("\"{0}\"")]
-	public void Deserialise__Valid_Json__Returns_LongId_With_Value(string format)
+	[MemberData(nameof(Helpers.Valid_Numeric_Json_Data), MemberType = typeof(Helpers))]
+	public override void Test00_Deserialise__Valid_Json__Returns_Id_With_Value(string format)
 	{
-		// Arrange
-		var value = Rnd.Lng;
-		var json = string.Format(format, value);
-
-		// Act
-		var result = JsonSerializer.Deserialize<TestLongId>(json, Options);
-
-		// Assert
-		Assert.Equal(value, result!.Value);
+		Test00(format, Rnd.Lng);
 	}
 
 	[Theory]
-	[InlineData("{0}")]
-	[InlineData("\"{0}\"")]
-	public void Deserialise__Valid_Json__Returns_Object_With_LongId_Value(string format)
+	[MemberData(nameof(Helpers.Valid_Numeric_Json_Data), MemberType = typeof(Helpers))]
+	public override void Test01_Deserialise__Valid_Json__Returns_Object_With_Id_Value(string format)
 	{
-		// Arrange
-		var v0 = Rnd.Int;
-		var v1 = Rnd.Lng;
-		var json = $"{{ \"Id\": {v0}, \"LongId\": {string.Format(format, v1)} }}";
-
-		// Act
-		var result = JsonSerializer.Deserialize<LongIdWrapperTest>(json, Options);
-
-		// Assert
-		Assert.Equal(v0, result!.Id);
-		Assert.Equal(v1, result.LongId.Value);
+		Test01(format, Rnd.Lng);
 	}
 
 	[Theory]
-	[InlineData("\"  \"")]
-	[InlineData("true")]
-	[InlineData("false")]
-	public void Deserialise__Null_Or_Invalid_Json__Returns_Default_LongId_Value(string input)
+	[MemberData(nameof(Helpers.Invalid_Json_Data), MemberType = typeof(Helpers))]
+	public override void Test02_Deserialise__Null_Or_Invalid_Json__Returns_Default_Id_Value(string input)
 	{
-		// Arrange
-
-		// Act
-		var result = JsonSerializer.Deserialize<TestLongId>(input, Options);
-
-		// Assert
-		Assert.Equal(0L, result!.Value);
+		Test02(input, 0L);
 	}
 
 	[Theory]
-	[InlineData("\"  \"")]
-	[InlineData("true")]
-	[InlineData("false")]
-	[InlineData("[ 0, 1, 2 ]")]
-	[InlineData(/*lang=json,strict*/ "{ \"foo\": \"bar\" }")]
-	public void Deserialise__Null_Or_Invalid_Json__Returns_Object_With_Default_LongId_Value(string input)
+	[MemberData(nameof(Helpers.Invalid_Json_Data), MemberType = typeof(Helpers))]
+	public override void Test03_Deserialise__Null_Or_Invalid_Json__Returns_Object_With_Default_Id_Value(string input)
 	{
-		// Arrange
-		var v0 = Rnd.Int;
-		var json = $"{{ \"Id\": {v0}, \"LongId\": {input} }}";
-
-		// Act
-		var result = JsonSerializer.Deserialize<LongIdWrapperTest>(json, Options);
-
-		// Assert
-		Assert.Equal(v0, result!.Id);
-		Assert.Equal(0L, result.LongId.Value);
-	}
-
-	public sealed record class TestLongId : LongId;
-
-	public class LongIdWrapperTest
-	{
-		public int Id { get; set; }
-
-		public TestLongId LongId { get; set; } = new();
+		Test03(input, 0L);
 	}
 }

@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace StrongId.Json.StrongIdJsonConverter_Tests;
 
-public class WriteJson_Tests : Json_Tests
+public class WriteJson_Tests
 {
 	[Fact]
 	public void Serialise_Value_Returns_Json_Value()
@@ -15,7 +15,7 @@ public class WriteJson_Tests : Json_Tests
 		var id = new TestId { Value = value };
 
 		// Act
-		var result = JsonSerializer.Serialize(id, Options);
+		var result = JsonSerializer.Serialize(id, Helpers.Options);
 
 		// Assert
 		Assert.Equal($"\"{value}\"", result);
@@ -28,7 +28,7 @@ public class WriteJson_Tests : Json_Tests
 		// Arrange
 
 		// Act
-		var result = JsonSerializer.Serialize(input, Options);
+		var result = JsonSerializer.Serialize(input, Helpers.Options);
 
 		// Assert
 		Assert.Equal("null", result);

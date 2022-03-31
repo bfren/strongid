@@ -3,6 +3,6 @@
 
 namespace StrongId.Json.StrongIdJsonConverter_Tests;
 
-public class TrySkip_Tests : Json_Tests
+public class TrySkip_Tests
 {
 }
