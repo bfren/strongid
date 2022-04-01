@@ -1,21 +1,21 @@
 // StrongId: Unit Tests
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
-namespace StrongId.IntId_Tests;
+namespace StrongId.Testing.Generator_Tests;
 
-public class RndId_Tests
+public class LongId_Tests
 {
 	[Fact]
 	public void Returns_Different_Value_Each_Time()
 	{
 		// Arrange
 		var iterations = 10000;
-		var values = new List<int>();
+		var values = new List<long>();
 
 		// Act
 		for (var i = 0; i < iterations; i++)
 		{
-			values.Add(IntId.RndId<TestId>().Value);
+			values.Add(Generator.LongId<TestId>(false).Value);
 		}
 
 		var result = values.Distinct().Count();
@@ -24,5 +24,5 @@ public class RndId_Tests
 		Assert.Equal(values.Count, result);
 	}
 
-	public sealed record class TestId : IntId;
+	public sealed record class TestId : LongId;
 }
