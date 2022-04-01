@@ -14,6 +14,9 @@
 		<Using Include="RndF"/>
 		<Using Include="Xunit"/>
 	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\StrongId.Testing\StrongId.Testing.csproj" />
+	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
 	</ItemGroup>

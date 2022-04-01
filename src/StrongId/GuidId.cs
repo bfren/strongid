@@ -2,7 +2,6 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
 using System;
-using RndF;
 
 namespace StrongId;
 
@@ -21,12 +20,4 @@ public abstract record class GuidId : StrongId<Guid>
 	/// </summary>
 	/// <param name="value">ID Value</param>
 	protected GuidId(Guid value) : base(value) { }
-
-	/// <summary>
-	/// Generate a new <typeparamref name="TId"/> with a random <see cref="IStrongId.Value"/>
-	/// </summary>
-	/// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
-	public static TId RndId<TId>()
-		where TId : StrongId<Guid>, new() =>
-		new() { Value = Rnd.Guid };
 }
