@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>StrongId: Test methods for generating random StrongIds.</Description>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Rnd" Version="8.1.1" PrivateAssets="All" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\StrongId\StrongId.csproj" />
+	</ItemGroup>
+</Project>

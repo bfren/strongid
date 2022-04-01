@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<RootNamespace>StrongId.Testing</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\StrongId.Testing\StrongId.Testing.csproj" />
+	</ItemGroup>
+</Project>
