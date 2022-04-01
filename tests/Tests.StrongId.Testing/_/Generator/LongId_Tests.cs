@@ -9,7 +9,7 @@ public class LongId_Tests
 	public void Returns_Different_Value_Each_Time()
 	{
 		// Arrange
-		var iterations = 10000;
+		var iterations = 1000;
 		var values = new List<long>();
 
 		// Act
