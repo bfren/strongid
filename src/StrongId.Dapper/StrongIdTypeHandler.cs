@@ -33,6 +33,9 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 				Type t when t == typeof(long) =>
 					GetValueAsType(value, F.ParseInt64, 0L),
 
+				Type t =>
+					throw new InvalidOperationException($"StrongId with value type {t} is not supported."),
+
 				_ =>
 					throw new InvalidOperationException($"StrongId with value type {typeof(object)} is not supported.")
 			}
@@ -43,8 +46,29 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 	/// </summary>
 	/// <param name="parameter"></param>
 	/// <param name="value"><see cref="IStrongId"/> value</param>
-	public override void SetValue(IDbDataParameter parameter, T value) =>
+	/// <exception cref="InvalidOperationException"></exception>
+	public override void SetValue(IDbDataParameter parameter, T value)
+	{
+		parameter.DbType = TypeF.GetStrongIdValueType(typeof(T)) switch
+		{
+			Type t when t == typeof(Guid) =>
+				DbType.Guid,
+
+			Type t when t == typeof(int) =>
+				DbType.Int32,
+
+			Type t when t == typeof(long) =>
+				DbType.Int64,
+
+			{ } t =>
+				throw new InvalidOperationException($"StrongId with value type {t} is not supported."),
+
+			_ =>
+				throw new InvalidOperationException($"StrongId with value type {typeof(object)} is not supported.")
+		};
+
 		parameter.Value = value.Value;
+	}
 
 	/// <summary>
 	/// Returns a strongly-typed value

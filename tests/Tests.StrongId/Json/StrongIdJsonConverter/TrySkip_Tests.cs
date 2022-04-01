@@ -11,8 +11,8 @@ public class TrySkip_Tests
 	public void Skipped_True__Returns_DefaultValue()
 	{
 		// Arrange
-		var defaultValue = Rnd.Lng;
-		var converter = Substitute.ForPartsOf<StrongIdJsonConverter<TestId>>();
+		var defaultValue = Rnd.Guid;
+		var converter = Substitute.ForPartsOf<StrongIdJsonConverter<TestGuidId>>();
 
 		// Act
 		var result = converter.HandleSkip(true, defaultValue);
@@ -25,7 +25,7 @@ public class TrySkip_Tests
 	public void Skipped_False__Throws_JsonException()
 	{
 		// Arrange
-		var converter = Substitute.ForPartsOf<StrongIdJsonConverter<TestId>>();
+		var converter = Substitute.ForPartsOf<StrongIdJsonConverter<TestLongId>>();
 
 		// Act
 		var action = void () => converter.HandleSkip(false, Rnd.Lng);
@@ -35,5 +35,7 @@ public class TrySkip_Tests
 		Assert.Equal($"Invalid {typeof(long)} and unable to skip reading current token.", ex.Message);
 	}
 
-	public sealed record class TestId : LongId;
+	public sealed record class TestGuidId : GuidId;
+
+	public sealed record class TestLongId : LongId;
 }
