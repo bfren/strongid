@@ -3,16 +3,16 @@
 
 namespace StrongId.Functions.TypeF_Tests;
 
-public class GetValueTypeOrNull_Tests
+public class GetStrongIdValueType_Tests
 {
 	[Fact]
 	public void Type_Is_Not_Assignable_From_IStrongId__Returns_Null()
 	{
 		// Arrange
-		var type = typeof(GetValueTypeOrNull_Tests);
+		var type = typeof(GetStrongIdValueType_Tests);
 
 		// Act
-		var result = TypeF.GetValueTypeOrNull(type);
+		var result = TypeF.GetStrongIdValueType(type);
 
 		// Assert
 		Assert.Null(result);
@@ -25,7 +25,7 @@ public class GetValueTypeOrNull_Tests
 		var type = typeof(TestIdWithoutValueType);
 
 		// Act
-		var result = TypeF.GetValueTypeOrNull(type);
+		var result = TypeF.GetStrongIdValueType(type);
 
 		// Assert
 		Assert.Null(result);
@@ -38,7 +38,7 @@ public class GetValueTypeOrNull_Tests
 		var type = typeof(TestIdWithMultipleValueTypes);
 
 		// Act
-		var result = TypeF.GetValueTypeOrNull(type);
+		var result = TypeF.GetStrongIdValueType(type);
 
 		// Assert
 		Assert.Null(result);
@@ -51,7 +51,7 @@ public class GetValueTypeOrNull_Tests
 		var type = typeof(TestId);
 
 		// Act
-		var result = TypeF.GetValueTypeOrNull(type);
+		var result = TypeF.GetStrongIdValueType(type);
 
 		// Assert
 		Assert.Equal(typeof(DateTime), result);
