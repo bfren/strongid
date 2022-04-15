@@ -3,7 +3,7 @@
 
 using System;
 
-namespace StrongId.Mvc;
+namespace StrongId.Mvc.ModelBinding;
 
 /// <summary>
 /// <see cref="IStrongId"/> MVC model binder for <see cref="Guid"/> value types

@@ -4,8 +4,9 @@
 using System;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using StrongId.Functions;
+using StrongId.Mvc.Exceptions;
 
-namespace StrongId.Mvc;
+namespace StrongId.Mvc.ModelBinding;
 
 /// <summary>
 /// <see cref="IStrongId"/> MVC model binder provider

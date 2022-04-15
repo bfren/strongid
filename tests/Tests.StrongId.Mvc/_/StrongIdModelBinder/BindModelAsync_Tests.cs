@@ -2,6 +2,7 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using StrongId.Mvc.ModelBinding;
 
 namespace StrongId.Mvc.StrongIdModelBinder_Tests;
 
