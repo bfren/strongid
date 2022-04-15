@@ -3,9 +3,8 @@
 
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using StrongId.Mvc.Exceptions;
-using StrongId.Mvc.ModelBinding;
 
-namespace StrongId.Mvc.StrongIdModelBinderProvider_Tests;
+namespace StrongId.Mvc.ModelBinding.StrongIdModelBinderProvider_Tests;
 
 public class GetBinderFromModelType_Tests
 {
