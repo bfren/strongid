@@ -1,7 +1,9 @@
 // StrongId: Strongly-Typed ID Values
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
+using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using StrongId.Mvc.ModelBinding;
 
 namespace StrongId.Mvc;
@@ -16,5 +18,12 @@ public static class MvcOptionsExtensions
 	/// </summary>
 	/// <param name="this"></param>
 	public static void AddStrongIdModelBinder(this MvcOptions @this) =>
-		@this.ModelBinderProviders.Insert(0, new StrongIdModelBinderProvider());
+		InsertProvider(@this.ModelBinderProviders.Insert);
+
+	/// <summary>
+	/// Abstract inserting provider to enable testing
+	/// </summary>
+	/// <param name="insert"></param>
+	internal static void InsertProvider(Action<int, IModelBinderProvider> insert) =>
+		insert(0, new StrongIdModelBinderProvider());
 }
