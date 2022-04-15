@@ -2,8 +2,9 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
 using System;
+using StrongId.Mvc.ModelBinding;
 
-namespace StrongId.Mvc;
+namespace StrongId.Mvc.Exceptions;
 
 /// <summary>
 /// Thrown when creating a StrongId MVC model binder fails -

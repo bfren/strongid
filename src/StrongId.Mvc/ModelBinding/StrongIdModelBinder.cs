@@ -4,7 +4,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace StrongId.Mvc;
+namespace StrongId.Mvc.ModelBinding;
 
 /// <summary>
 /// <see cref="IStrongId"/> MVC model binder

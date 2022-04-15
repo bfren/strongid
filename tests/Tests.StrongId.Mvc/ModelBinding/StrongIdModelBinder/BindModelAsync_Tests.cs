@@ -3,7 +3,7 @@
 
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace StrongId.Mvc.StrongIdModelBinder_Tests;
+namespace StrongId.Mvc.ModelBinding.StrongIdModelBinder_Tests;
 
 public class BindModelAsync_Tests
 {
@@ -35,7 +35,7 @@ public class BindModelAsync_Tests
 			.ReturnsForAnyArgs(Create.None<long>());
 
 		var binder = Substitute.For<StrongIdModelBinder<TestLongId, long>>();
-		binder.Parse(default!)
+		binder.Parse(default)
 			.ReturnsForAnyArgs(x => parse(x[0].ToString()));
 
 		return (binder, new(bindingContext, bindingResult, modelName, modelState, modelValue, parse, valueProvider));

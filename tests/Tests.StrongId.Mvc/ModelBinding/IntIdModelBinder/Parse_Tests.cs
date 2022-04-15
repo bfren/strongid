@@ -1,8 +1,7 @@
-
 // StrongId: Unit Tests
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
 
-namespace StrongId.Mvc.IntIdModelBinder_Tests;
+namespace StrongId.Mvc.ModelBinding.IntIdModelBinder_Tests;
 
 public class Parse_Tests : Abstracts.Parse_Tests<IntIdModelBinder<Parse_Tests.TestIntId>, Parse_Tests.TestIntId, int>
 {
