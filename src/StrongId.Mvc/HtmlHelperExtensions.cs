@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace StrongId.Mvc;
 
 /// <summary>
-/// HtmlHelper extensions
+/// <see cref="IHtmlHelper"/> extension methods
 /// </summary>
 public static class HtmlHelperExtensions
 {
