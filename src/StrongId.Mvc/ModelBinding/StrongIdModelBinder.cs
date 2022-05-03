@@ -21,6 +21,11 @@ public abstract class StrongIdModelBinder<TId, TIdValue> : IModelBinder
 	internal abstract Maybe<TIdValue> Parse(string? input);
 
 	/// <summary>
+	/// Default value, used when binding fails
+	/// </summary>
+	internal abstract TIdValue Default { get; }
+
+	/// <summary>
 	/// Get value and attempt to parse as a long
 	/// </summary>
 	/// <param name="bindingContext">ModelBindingContext</param>
@@ -43,7 +48,7 @@ public abstract class StrongIdModelBinder<TId, TIdValue> : IModelBinder
 			)
 			.Switch(
 				some: x => ModelBindingResult.Success(new TId { Value = x }),
-				none: _ => ModelBindingResult.Failed()
+				none: _ => ModelBindingResult.Success(new TId { Value = Default })
 			);
 
 		return Task.CompletedTask;

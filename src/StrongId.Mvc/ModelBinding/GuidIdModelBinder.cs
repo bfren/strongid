@@ -13,6 +13,10 @@ public sealed class GuidIdModelBinder<TId> : StrongIdModelBinder<TId, Guid>
 	where TId : GuidId, new()
 {
 	/// <inheritdoc/>
+	internal override Guid Default =>
+		Guid.Empty;
+
+	/// <inheritdoc/>
 	internal override Maybe<Guid> Parse(string? input) =>
 		F.ParseGuid(input);
 }
