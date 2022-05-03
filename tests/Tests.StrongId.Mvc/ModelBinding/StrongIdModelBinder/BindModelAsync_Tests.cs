@@ -93,7 +93,7 @@ public class BindModelAsync_Tests
 	}
 
 	[Fact]
-	public async Task ValueProvider_Result_Is_Not_None__Calls_Parse__Receives_None__Returns_Result_Failed()
+	public async Task ValueProvider_Result_Is_Not_None__Calls_Parse__Receives_None__Returns_Result_Success_With_Default()
 	{
 		// Arrange
 		var (binder, v) = Setup();
@@ -102,8 +102,9 @@ public class BindModelAsync_Tests
 		await binder.BindModelAsync(v.BindingContext);
 
 		// Assert
-		Assert.False(v.BindingContext.Result.IsModelSet);
-		Assert.Equal("Failed", v.BindingContext.Result.ToString());
+		Assert.True(v.BindingContext.Result.IsModelSet);
+		var model = Assert.IsType<TestLongId>(v.BindingContext.Result.Model);
+		Assert.Equal(binder.Default, model.Value);
 	}
 
 	[Fact]

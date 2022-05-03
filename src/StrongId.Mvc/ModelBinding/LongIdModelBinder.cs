@@ -11,6 +11,10 @@ public sealed class LongIdModelBinder<TId> : StrongIdModelBinder<TId, long>
 	where TId : LongId, new()
 {
 	/// <inheritdoc/>
+	internal override long Default =>
+		0L;
+
+	/// <inheritdoc/>
 	internal override Maybe<long> Parse(string? input) =>
 		F.ParseInt64(input);
 }
