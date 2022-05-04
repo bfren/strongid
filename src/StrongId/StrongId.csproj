@@ -8,4 +8,9 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
 		<PackageReference Include="System.Text.Json" Version="7.0.0-preview.2.*" />
 	</ItemGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+			<_Parameter1>Tests.StrongId.Mvc</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 </Project>
