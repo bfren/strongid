@@ -46,9 +46,17 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 	/// </summary>
 	/// <param name="parameter"></param>
 	/// <param name="value"><see cref="IStrongId"/> value</param>
+	/// <exception cref="ArgumentNullException"></exception>
 	/// <exception cref="InvalidOperationException"></exception>
 	public override void SetValue(IDbDataParameter parameter, T value)
 	{
+		// Shouldn't happen because Dapper won't pass a null parameter, but best to check anyway
+		if (parameter is null)
+		{
+			return;
+		}
+
+		// Set DbType according to the ID value type rather than the StrongId type
 		parameter.DbType = TypeF.GetStrongIdValueType(typeof(T)) switch
 		{
 			Type t when t == typeof(Guid) =>
@@ -64,10 +72,18 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 				throw new InvalidOperationException($"StrongId with value type {t} is not supported."),
 
 			_ =>
-				throw new InvalidOperationException($"StrongId with value type {typeof(object)} is not supported.")
+				throw new InvalidOperationException($"{typeof(T)} is not a valid StrongId.")
 		};
 
-		parameter.Value = value.Value;
+		// If the value is null, use default ID value
+		parameter.Value = value switch
+		{
+			T id =>
+				id.Value,
+
+			_ =>
+				new T().Value
+		};
 	}
 
 	/// <summary>
