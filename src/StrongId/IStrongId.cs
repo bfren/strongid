@@ -6,7 +6,8 @@ using System;
 namespace StrongId;
 
 /// <summary>
-/// Represents a strongly-typed ID - this should never be implemented directly - see <see cref="IStrongId{T}"/>
+/// Represents a strongly-typed ID - this should never be implemented directly -
+/// see <see cref="GuidId"/>, <see cref="IntId"/>, and <see cref="LongId"/>
 /// </summary>
 /// <remarks>
 /// This exists only to enable generic querying and parsing of values
@@ -20,7 +21,8 @@ public interface IStrongId
 }
 
 /// <summary>
-/// Represents a strongly-typed ID with a custom ID value type
+/// Represents a strongly-typed ID with a custom ID value type - see <see cref="GuidId"/>,
+/// <see cref="IntId"/>, and <see cref="LongId"/> for implementations
 /// </summary>
 /// <typeparam name="T"><see cref="IStrongId"/> Value type</typeparam>
 internal interface IStrongId<T> : IStrongId
