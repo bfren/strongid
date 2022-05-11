@@ -10,12 +10,10 @@ namespace StrongId.Newtonsoft.Json;
 /// <summary>
 /// <see cref="IStrongId"/> JSON converter
 /// </summary>
-/// <typeparam name="TId"><see cref="IStrongId"/> type</typeparam>
-public sealed class StrongIdJsonConverter<TId> : JsonConverter<TId>
-	where TId : class, IStrongId, new()
+public sealed class StrongIdJsonConverter : JsonConverter<IStrongId>
 {
 	/// <inheritdoc/>
-	public override TId? ReadJson(JsonReader reader, Type objectType, TId? existingValue, bool hasExistingValue, JsonSerializer serializer)
+	public override IStrongId? ReadJson(JsonReader reader, Type objectType, IStrongId? existingValue, bool hasExistingValue, JsonSerializer serializer)
 	{
 		// StrongId<> requires one type argument
 		var strongIdValueType = TypeF.GetStrongIdValueType(objectType);
@@ -57,17 +55,17 @@ public sealed class StrongIdJsonConverter<TId> : JsonConverter<TId>
 		var genericType = strongIdReader.MakeGenericType(objectType);
 		return Activator.CreateInstance(genericType) switch
 		{
-			IStrongIdJsonReader<TId> x =>
+			IStrongIdJsonReader x =>
 				x.ReadJson(reader, serializer),
 
 			_ =>
 				throw new JsonConverterException(
-					$"Unable to create {typeof(IStrongIdJsonReader<>)} for type {objectType}."
+					$"Unable to create {typeof(IStrongIdJsonReader)} for type {objectType}."
 				)
 		};
 	}
 
 	/// <inheritdoc/>
-	public override void WriteJson(JsonWriter writer, TId? value, JsonSerializer serializer) =>
+	public override void WriteJson(JsonWriter writer, IStrongId? value, JsonSerializer serializer) =>
 		writer.WriteValue(value?.Value);
 }

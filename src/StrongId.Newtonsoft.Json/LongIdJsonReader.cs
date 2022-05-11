@@ -10,27 +10,23 @@ namespace StrongId.Newtonsoft.Json;
 /// <see cref="LongId"/> JSON reader
 /// </summary>
 /// <typeparam name="TId"><see cref="LongId"/> type</typeparam>
-internal class LongIdJsonReader<TId> : IStrongIdJsonReader<TId>
+internal class LongIdJsonReader<TId> : IStrongIdJsonReader
 	where TId : LongId, new()
 {
 	/// <inheritdoc/>
-	public TId ReadJson(JsonReader reader, JsonSerializer serializer) =>
-		new()
+	public IStrongId ReadJson(JsonReader reader, JsonSerializer serializer) =>
+		new TId()
 		{
-			Value = reader.TokenType switch
+			Value = reader.Value?.ToString() switch
 			{
-				// Handle numbers
-				JsonToken.Integer =>
-					reader.ReadAsInt32() ?? 0L,
-
-				// Handle strings
-				JsonToken.String =>
-					F.ParseInt64(reader.ReadAsString()).Switch(
+				// Parse string or use default
+				string s =>
+					F.ParseInt64(s).Switch(
 						some: x => x,
 						none: _ => 0L
 					),
 
-				// Handle default
+				// Skip value and use default
 				_ =>
 					JsonReaderF.HandleSkip(reader.Skip, 0L)
 			}
