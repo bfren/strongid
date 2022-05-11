@@ -2,11 +2,8 @@
 	<PropertyGroup>
 		<Description>StrongId: Strongly-typed ID classes and methods, including JSON serialisation.</Description>
 	</PropertyGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="System.Text.Json" Version="6.0.3" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="System.Text.Json" Version="7.0.0-preview.2.*" />
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="6.0.4" />
 	</ItemGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
