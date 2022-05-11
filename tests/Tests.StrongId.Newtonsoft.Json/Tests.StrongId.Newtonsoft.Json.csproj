@@ -3,6 +3,6 @@
 		<ProjectReference Include="..\..\src\StrongId.Newtonsoft.Json\StrongId.Newtonsoft.Json.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Functions\" />
+	  <Folder Include="_\" />
 	</ItemGroup>
 </Project>
