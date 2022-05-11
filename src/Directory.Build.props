@@ -3,14 +3,14 @@
 
 	<!-- Standard Configuration -->
 	<PropertyGroup Label="Framework and Language">
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<!-- Common Packages -->
 	<ItemGroup>
-		<PackageReference Include="MaybeF" Version="9.0.2"/>
+		<PackageReference Include="MaybeF" Version="9.1.0"/>
 	</ItemGroup>
 	<ItemGroup>
 		<Using Include="MaybeF"/>

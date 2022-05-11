@@ -4,7 +4,6 @@
 namespace StrongId;
 
 /// <inheritdoc cref="IStrongId{T}"/>
-/// <param name="Value">ID Value</param>
 public abstract record class StrongId<T> : IStrongId<T>
 {
 	/// <inheritdoc/>
