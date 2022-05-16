@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 **/jeebsconfig-secrets.json
+**/Local.pack.props

@@ -35,9 +35,21 @@ public class SetValue_Tests
 	public void Sets_Parameter__Int64() =>
 		Sets_Parameter__With_Correct_Type_And_Value(LongId<TestLongId>(), DbType.Int64);
 
+	[Fact]
+	public void Sets_Parameter__UInt32() =>
+		Sets_Parameter__With_Correct_Type_And_Value(UIntId<TestUIntId>(), DbType.UInt32);
+
+	[Fact]
+	public void Sets_Parameter__UInt64() =>
+		Sets_Parameter__With_Correct_Type_And_Value(ULongId<TestULongId>(), DbType.UInt64);
+
 	public sealed record class TestGuidId : GuidId;
 
 	public sealed record class TestIntId : IntId;
 
 	public sealed record class TestLongId : LongId;
+
+	public sealed record class TestUIntId : UIntId;
+
+	public sealed record class TestULongId : ULongId;
 }

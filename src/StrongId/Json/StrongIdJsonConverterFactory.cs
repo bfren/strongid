@@ -58,6 +58,12 @@ public sealed class StrongIdJsonConverterFactory : JsonConverterFactory
 			Type t when t == typeof(long) =>
 				typeof(LongIdJsonConverter<>),
 
+			Type t when t == typeof(uint) =>
+				typeof(UIntIdJsonConverter<>),
+
+			Type t when t == typeof(ulong) =>
+				typeof(ULongIdJsonConverter<>),
+
 			{ } t =>
 				throw new JsonConverterException(
 					$"StrongId with value type {t} is not supported."

@@ -45,6 +45,12 @@ public sealed class StrongIdJsonConverter : JsonConverter<IStrongId>
 			Type t when t == typeof(long) =>
 				typeof(LongIdJsonReader<>),
 
+			Type t when t == typeof(uint) =>
+				typeof(UIntIdJsonReader<>),
+
+			Type t when t == typeof(ulong) =>
+				typeof(ULongIdJsonReader<>),
+
 			{ } t =>
 				throw new JsonConverterException(
 					$"StrongId with value type {t} is not supported."

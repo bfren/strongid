@@ -11,7 +11,7 @@ namespace StrongId.Newtonsoft.Json;
 internal interface IStrongIdJsonReader
 {
 	/// <summary>
-	/// Read the current JSON value and convert it to <see cref="TId"/>
+	/// Read the current JSON value and convert it to <see cref="IStrongId"/>
 	/// </summary>
 	/// <param name="reader"></param>
 	/// <param name="serializer"></param>

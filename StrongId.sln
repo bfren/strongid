@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A2579173-D4A
 	ProjectSection(SolutionItems) = preProject
 		src\.editorconfig = src\.editorconfig
 		src\Directory.Build.props = src\Directory.Build.props
-		src\Local.pack.props = src\Local.pack.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6BDA45CF-017D-48EA-9887-22798C861B95}"
@@ -47,9 +46,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongId.Testing", "src\Str
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.StrongId.Testing", "tests\Tests.StrongId.Testing\Tests.StrongId.Testing.csproj", "{8CA1A5A5-85D1-4D2E-B085-26171A947DA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongId.Newtonsoft.Json", "src\StrongId.Newtonsoft.Json\StrongId.Newtonsoft.Json.csproj", "{17B67149-47F2-4CF3-AB52-1CCF6CBF8543}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongId.Newtonsoft.Json", "src\StrongId.Newtonsoft.Json\StrongId.Newtonsoft.Json.csproj", "{17B67149-47F2-4CF3-AB52-1CCF6CBF8543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.StrongId.Newtonsoft.Json", "tests\Tests.StrongId.Newtonsoft.Json\Tests.StrongId.Newtonsoft.Json.csproj", "{1C2C918D-5F01-4810-ADB6-5F7DB401CA95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.StrongId.Newtonsoft.Json", "tests\Tests.StrongId.Newtonsoft.Json\Tests.StrongId.Newtonsoft.Json.csproj", "{1C2C918D-5F01-4810-ADB6-5F7DB401CA95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
