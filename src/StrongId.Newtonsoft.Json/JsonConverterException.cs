@@ -8,7 +8,7 @@ namespace StrongId.Newtonsoft.Json;
 
 /// <summary>
 /// Thrown when reading a StrongId JSON value fails -
-/// see <see cref="StrongIdJsonConverter{TId}.ReadJson(JsonReader, Type, TId?, bool, JsonSerializer)"/>
+/// see <see cref="StrongIdJsonConverter.ReadJson(JsonReader, Type, IStrongId?, bool, JsonSerializer)"/>
 /// </summary>
 public sealed class JsonConverterException : Exception
 {
