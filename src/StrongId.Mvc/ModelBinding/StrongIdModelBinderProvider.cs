@@ -46,6 +46,12 @@ public sealed class StrongIdModelBinderProvider : IModelBinderProvider
 			Type t when t == typeof(long) =>
 				typeof(LongIdModelBinder<>),
 
+			Type t when t == typeof(uint) =>
+				typeof(UIntIdModelBinder<>),
+
+			Type t when t == typeof(ulong) =>
+				typeof(ULongIdModelBinder<>),
+
 			{ } t =>
 				throw new ModelBinderException($"StrongId with value type {t} is not supported.")
 		};
