@@ -3,7 +3,7 @@
 		<Description>StrongId: Strongly-typed ID classes and methods, including JSON serialisation.</Description>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Text.Json" Version="6.0.5" />
+		<PackageReference Include="System.Text.Json" Version="6.0.6" />
 	</ItemGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
