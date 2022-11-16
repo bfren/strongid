@@ -3,11 +3,14 @@
 		<Description>StrongId: Strongly-typed ID classes and methods, including JSON serialisation.</Description>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Text.Json" Version="6.0.6" />
+		<PackageReference Include="System.Text.Json" Version="7.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
 			<_Parameter1>Tests.StrongId.Mvc</_Parameter1>
 		</AssemblyAttribute>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Update="MaybeF" Version="9.2.0" />
 	</ItemGroup>
 </Project>

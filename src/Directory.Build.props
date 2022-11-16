@@ -3,7 +3,7 @@
 
 	<!-- Standard Configuration -->
 	<PropertyGroup Label="Framework and Language">
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -84,10 +84,10 @@
 			4. Cleanup
 	-->
 	<Import Project="$(LocalPackPath)" Condition="Exists('$(LocalPackPath)')"/>
-	<Target Name="PackAndPushToLocalNuget" AfterTargets="Build" Condition="Exists('$(LocalPackPath)') and '$(Configuration)'=='Release'">
+	<Target Name="PackAndPushToLocalNuget" AfterTargets="DispatchToInnerBuilds" Condition="Exists('$(LocalPackPath)') and '$(Configuration)'=='Release'">
 		<Exec Command="dotnet pack &quot;$(ProjectFileName)&quot; -p:PackageVersion=$(StrongIdVersion) --no-build --configuration Release"/>
-		<Exec Command="nuget init &quot;$(ProjectDir)bin\Release&quot; &quot;$(LocalNugetRepository)&quot;"/>
-		<Exec Command="del &quot;$(ProjectDir)bin\Release\*.nupkg&quot;"/>
+		<Exec Command="nuget init &quot;$(MSBuildProjectDirectory)\bin\Release&quot; &quot;$(LocalNugetRepository)&quot;"/>
+		<Exec Command="del &quot;$(MSBuildProjectDirectory)\bin\Release\*.nupkg&quot;"/>
 	</Target>
 
 </Project>

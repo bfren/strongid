@@ -10,4 +10,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\StrongId\StrongId.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Update="MaybeF" Version="9.2.0" />
+	</ItemGroup>
 </Project>
