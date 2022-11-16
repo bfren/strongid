@@ -8,4 +8,7 @@
 	<ItemGroup>
 		<PackageReference Include="Dapper" Version="2.0.123" />
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Update="MaybeF" Version="9.2.0" />
+	</ItemGroup>
 </Project>
