@@ -31,7 +31,7 @@ public class HiddenForId_Tests
 		return (htmlHelper, new(x => x.Id, id, model, viewData));
 	}
 
-	private record class Vars(
+	private sealed record class Vars(
 		Expression<Func<TestModel, TestId?>> Expression,
 		TestId Id,
 		TestModel Model,
