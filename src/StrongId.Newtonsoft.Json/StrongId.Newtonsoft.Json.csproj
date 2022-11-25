@@ -1,11 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\StrongId\StrongId.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <PackageReference Update="MaybeF" Version="9.2.0" />
 	</ItemGroup>
 </Project>

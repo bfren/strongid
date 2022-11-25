@@ -10,7 +10,4 @@
 			<_Parameter1>Tests.StrongId.Mvc</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>
-	<ItemGroup>
-	  <PackageReference Update="MaybeF" Version="9.2.0" />
-	</ItemGroup>
 </Project>
