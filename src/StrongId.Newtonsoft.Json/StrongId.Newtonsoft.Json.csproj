@@ -1,4 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<Description>StrongId.Newtonsoft: JSON serialisation using Newtonsoft.Json.</Description>
+	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
