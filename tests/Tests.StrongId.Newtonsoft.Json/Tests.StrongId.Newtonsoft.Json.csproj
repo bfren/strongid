@@ -1,4 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<RootNamespace>StrongId.Newtonsoft</RootNamespace>
+	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\StrongId.Newtonsoft.Json\StrongId.Newtonsoft.Json.csproj" />
 	</ItemGroup>
