@@ -6,6 +6,6 @@
 		<ProjectReference Include="..\StrongId\StrongId.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Rnd" Version="8.4.1" PrivateAssets="All" />
+		<PackageReference Include="Rnd" PrivateAssets="All" />
 	</ItemGroup>
 </Project>
