@@ -3,9 +3,9 @@
 		<Description>StrongId.Mvc: Model Binders to enable MVC support for StrongIds.</Description>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.2.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\StrongId\StrongId.csproj" />
