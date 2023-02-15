@@ -12,4 +12,4 @@ View the [Wiki](https://github.com/bfren/strongid/wiki) for documentation.
 
 ## Copyright
 
-> Copyright (c) 2022 [bfren](https://bfren.dev) (unless otherwise stated)
+> Copyright (c) 2022-2023 [bfren](https://bfren.dev) (unless otherwise stated)
