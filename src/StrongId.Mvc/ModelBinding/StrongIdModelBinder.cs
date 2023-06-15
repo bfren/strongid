@@ -26,7 +26,7 @@ public abstract class StrongIdModelBinder<TId, TIdValue> : IModelBinder
 	internal abstract TIdValue Default { get; }
 
 	/// <summary>
-	/// Get value and attempt to parse as a long
+	/// Get value from the binding context
 	/// </summary>
 	/// <param name="bindingContext">ModelBindingContext</param>
 	public Task BindModelAsync(ModelBindingContext bindingContext)
