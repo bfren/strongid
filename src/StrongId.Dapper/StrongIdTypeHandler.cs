@@ -54,7 +54,7 @@ public sealed class StrongIdTypeHandler<T> : global::Dapper.SqlMapper.TypeHandle
 	/// <param name="value"><see cref="IStrongId"/> value</param>
 	/// <exception cref="ArgumentNullException"></exception>
 	/// <exception cref="InvalidOperationException"></exception>
-	public override void SetValue(IDbDataParameter parameter, T value)
+	public override void SetValue(IDbDataParameter parameter, T? value)
 	{
 		// Shouldn't happen because Dapper won't pass a null parameter, but best to check anyway
 		if (parameter is null)
