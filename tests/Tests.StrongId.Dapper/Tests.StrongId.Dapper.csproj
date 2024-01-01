@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<RootNamespace>StrongId.Dapper</RootNamespace>
-	</PropertyGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\..\src\StrongId.Dapper\StrongId.Dapper.csproj" />
-	</ItemGroup>
+  <PropertyGroup>
+    <RootNamespace>StrongId.Dapper</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\StrongId.Dapper\StrongId.Dapper.csproj" />
+  </ItemGroup>
 </Project>

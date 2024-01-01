@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<Description>StrongId.Newtonsoft: JSON serialisation using Newtonsoft.Json.</Description>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\StrongId\StrongId.csproj" />
-	</ItemGroup>
+  <PropertyGroup>
+    <Description>StrongId.Newtonsoft: JSON serialisation using Newtonsoft.Json.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StrongId\StrongId.csproj" />
+  </ItemGroup>
 </Project>
