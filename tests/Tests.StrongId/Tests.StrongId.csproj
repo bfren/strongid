@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<RootNamespace>StrongId</RootNamespace>
-	</PropertyGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\..\src\StrongId\StrongId.csproj" />
-	</ItemGroup>
+  <PropertyGroup>
+    <RootNamespace>StrongId</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\StrongId\StrongId.csproj" />
+  </ItemGroup>
 </Project>
