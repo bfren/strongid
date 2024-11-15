@@ -23,23 +23,23 @@ public static class Helpers
 		}
 	}
 
-	public static IEnumerable<object[]> Valid_Numeric_Json_Data()
-	{
-		yield return new object[] { "{0}" };
-		yield return new object[] { "\"{0}\"" };
-	}
+	public static TheoryData<string> Valid_Numeric_Json_Data =>
+		[
+			"{0}",
+			"\"{0}\""
+		];
 
-	public static IEnumerable<object[]> Valid_String_Json_Data()
-	{
-		yield return new object[] { "\"{0}\"" };
-	}
+	public static TheoryData<string> Valid_String_Json_Data =>
+		[
+			"\"{0}\""
+		];
 
-	public static IEnumerable<object[]> Invalid_Json_Data()
-	{
-		yield return new object[] { "\"  \"" };
-		yield return new object[] { "true" };
-		yield return new object[] { "false" };
-		yield return new object[] { "[ 0, 1, 2 ]" };
-		yield return new object[] {/*lang=json,strict*/ "{ \"foo\": \"bar\" }" };
-	}
+	public static TheoryData<string> Invalid_Json_Data =>
+		[
+			"\"  \"",
+			"true",
+			"false",
+			"[ 0, 1, 2 ]",
+			/*lang=json,strict*/ "{ \"foo\": \"bar\" }"
+		];
 }

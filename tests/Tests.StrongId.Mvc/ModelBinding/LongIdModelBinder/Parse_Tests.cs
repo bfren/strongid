@@ -7,7 +7,7 @@ namespace StrongId.Mvc.ModelBinding.LongIdModelBinder_Tests;
 
 public class Parse_Tests : Abstracts.Parse_Tests<LongIdModelBinder<Parse_Tests.TestLongId>, Parse_Tests.TestLongId, long>
 {
-	public static TheoryData<string> Extreme_Long_Input =>
+	public static TheoryData<string?> Extreme_Long_Input =>
 		[
 			long.MinValue.ToString(),
 			long.MaxValue.ToString()
