@@ -89,7 +89,7 @@
   <Import Project="$(LocalPackPath)" Condition="Exists('$(LocalPackPath)') and '$(Configuration)'=='Release'"/>
   <PropertyGroup Label="Local Package Validation" Condition="Exists('$(LocalPackPath)') and '$(Configuration)'=='Release'">
     <EnablePackageValidation>true</EnablePackageValidation>
-    <PackageValidationBaselineVersion>8.3.0</PackageValidationBaselineVersion>
+    <PackageValidationBaselineVersion>8.5.0</PackageValidationBaselineVersion>
   </PropertyGroup>
   <Target Name="PackAndPushToLocalNuget" AfterTargets="DispatchToInnerBuilds" Condition="Exists('$(LocalPackPath)') and '$(Configuration)'=='Release'">
     <Exec Command="dotnet pack &quot;$(ProjectFileName)&quot; -p:PackageVersion=$(StrongIdVersion) --no-build --configuration Release"/>
