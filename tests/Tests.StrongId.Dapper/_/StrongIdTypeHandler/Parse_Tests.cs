@@ -5,14 +5,14 @@ namespace StrongId.Dapper.StrongIdTypeHandler_Tests;
 
 public class Parse_Tests
 {
-	public static IEnumerable<object[]> Null_Or_Empty_Or_Invalid_Data()
-	{
-		yield return new object[] { null! };
-		yield return new object[] { "" };
-		yield return new object[] { " " };
-		yield return new object[] { true };
-		yield return new object[] { "something wrong here" };
-	}
+	public static TheoryData<object> Null_Or_Empty_Or_Invalid_Data =>
+		[
+			new object[] { null! },
+			new object[] { "" },
+			new object[] { " " },
+			new object[] { true },
+			new object[] { "something wrong here" }
+		];
 
 	[Theory]
 	[MemberData(nameof(Null_Or_Empty_Or_Invalid_Data))]
@@ -152,7 +152,7 @@ public class Parse_Tests
 		var handler = new StrongIdTypeHandler<InvalidDateTimeId>();
 
 		// Act
-		var action = () => handler.Parse(Rnd.DateTime);
+		InvalidDateTimeId action() => handler.Parse(Rnd.DateTime);
 
 		// Assert
 		Assert.Throws<InvalidOperationException>(action);
