@@ -7,11 +7,11 @@ namespace StrongId.Mvc.ModelBinding.LongIdModelBinder_Tests;
 
 public class Parse_Tests : Abstracts.Parse_Tests<LongIdModelBinder<Parse_Tests.TestLongId>, Parse_Tests.TestLongId, long>
 {
-	public static IEnumerable<object[]> Extreme_Long_Input()
-	{
-		yield return new object[] { long.MinValue.ToString() };
-		yield return new object[] { long.MaxValue.ToString() };
-	}
+	public static TheoryData<string?> Extreme_Long_Input =>
+		[
+			long.MinValue.ToString(),
+			long.MaxValue.ToString()
+		];
 
 	[Theory]
 	[MemberData(nameof(Valid_Integer_Input), MemberType = typeof(IntIdModelBinder_Tests.Parse_Tests))]

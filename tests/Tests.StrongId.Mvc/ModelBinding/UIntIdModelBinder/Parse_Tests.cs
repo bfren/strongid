@@ -5,37 +5,37 @@ namespace StrongId.Mvc.ModelBinding.UIntIdModelBinder_Tests;
 
 public class Parse_Tests : Abstracts.Parse_Tests<UIntIdModelBinder<Parse_Tests.TestUIntId>, Parse_Tests.TestUIntId, uint>
 {
-	public static IEnumerable<object[]> Valid_Unsigned_Integer_Input()
-	{
-		yield return new object[] { "1" };
-		yield return new object[] { "  1  " };
-		yield return new object[] { "1000" };
-	}
+	public static TheoryData<string?> Valid_Unsigned_Integer_Input =>
+		[
+			"1",
+			"  1  ",
+			"1000",
+		];
 
-	public static IEnumerable<object[]> Invalid_Unsigned_Integer_Input()
-	{
-		yield return new object[] { "" };
-		yield return new object[] { "Invalid" };
-		yield return new object[] { "-1" };
-		yield return new object[] { "1-" };
-		yield return new object[] { "(1)" };
-		yield return new object[] { "1.01" };
-		yield return new object[] { "£1" };
-		yield return new object[] { "£1.10" };
-		yield return new object[] { "1e4" };
-		yield return new object[] { "-1e4" };
-		yield return new object[] { "1e-4" };
-		yield return new object[] { "-1e-4" };
-		yield return new object[] { "-1000" };
-		yield return new object[] { "1,000" };
-		yield return new object[] { "-1,000" };
-	}
+	public static TheoryData<string?> Invalid_Unsigned_Integer_Input =>
+		[
+			"",
+			"Invalid",
+			"-1",
+			"1-",
+			"(1)",
+			"1.01",
+			"£1",
+			"£1.10",
+			"1e4",
+			"-1e4",
+			"1e-4",
+			"-1e-4",
+			"-1000",
+			"1,000",
+			"-1,000"
+		];
 
-	public static IEnumerable<object[]> Extreme_Unsigned_Integer_Input()
-	{
-		yield return new object[] { uint.MinValue.ToString() };
-		yield return new object[] { uint.MaxValue.ToString() };
-	}
+	public static TheoryData<string> Extreme_Unsigned_Integer_Input =>
+		[
+			uint.MinValue.ToString(),
+			uint.MaxValue.ToString()
+		];
 
 	[Theory]
 	[MemberData(nameof(Valid_Unsigned_Integer_Input))]
