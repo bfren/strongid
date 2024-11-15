@@ -24,3 +24,6 @@ dotnet_diagnostic.RCS1102.severity = none
 
 # RCS1118: Mark local variable as const.
 dotnet_diagnostic.RCS1118.severity = none
+
+# xUnit1045: Avoid using TheoryData type arguments that might not be serializable
+dotnet_diagnostic.xUnit1045.severity = none
