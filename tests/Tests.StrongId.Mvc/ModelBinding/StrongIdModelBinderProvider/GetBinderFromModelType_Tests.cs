@@ -44,8 +44,8 @@ public class GetBinderFromModelType_Tests
 		var result = StrongIdModelBinderProvider.GetBinderFromModelType(type);
 
 		// Assert
-		Assert.IsAssignableFrom<IModelBinder>(result);
-		Assert.IsAssignableFrom<StrongIdModelBinder<TestGuidId, Guid>>(result);
+		Assert.IsType<IModelBinder>(result, false);
+		Assert.IsType<StrongIdModelBinder<TestGuidId, Guid>>(result, false);
 	}
 
 	[Fact]
@@ -58,8 +58,8 @@ public class GetBinderFromModelType_Tests
 		var result = StrongIdModelBinderProvider.GetBinderFromModelType(type);
 
 		// Assert
-		Assert.IsAssignableFrom<IModelBinder>(result);
-		Assert.IsAssignableFrom<StrongIdModelBinder<TestIntId, int>>(result);
+		Assert.IsType<IModelBinder>(result, false);
+		Assert.IsType<StrongIdModelBinder<TestIntId, int>>(result, false);
 	}
 
 	[Fact]
@@ -72,8 +72,8 @@ public class GetBinderFromModelType_Tests
 		var result = StrongIdModelBinderProvider.GetBinderFromModelType(type);
 
 		// Assert
-		Assert.IsAssignableFrom<IModelBinder>(result);
-		Assert.IsAssignableFrom<StrongIdModelBinder<TestLongId, long>>(result);
+		Assert.IsType<IModelBinder>(result, false);
+		Assert.IsType<StrongIdModelBinder<TestLongId, long>>(result, false);
 	}
 
 	public sealed record class RandomType;
